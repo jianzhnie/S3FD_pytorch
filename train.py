@@ -17,11 +17,10 @@ from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 
 from data.config import cfg
-from s3fd import build_s3fd
+from models.s3fd import build_s3fd
 from layers.modules import MultiBoxLoss
+from layers.functions import PriorBox
 from data.factory import dataset_factory, detection_collate
-
-#os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
 
 
 def str2bool(v):
@@ -38,7 +37,7 @@ parser.add_argument('--basenet',
                     default='vgg16_reducedfc.pth',
                     help='Pretrained base model')
 parser.add_argument('--batch_size',
-                    default=16, type=int,
+                    default=8, type=int,
                     help='Batch size for training')
 parser.add_argument('--resume',
                     default=None, type=str,
@@ -133,6 +132,11 @@ print('Loading wider dataset...')
 print('Using the specified args:')
 print(args)
 
+## get the priorbox of ssd 
+priorbox = PriorBox(cfg)
+with torch.no_grad():
+    priors = priorbox.forward()
+    priors = priors.cuda()
 
 def train():
     step_index = 0
@@ -157,12 +161,12 @@ def train():
             out = net(images)
             # backprop
             optimizer.zero_grad()
-            loss_l, loss_c = criterion(out, targets)
+            loss_l, loss_c = criterion(out, priors, targets)
             loss = loss_l + loss_c
             loss.backward()
             optimizer.step()
             t1 = time.time()
-            losses += loss.data[0]
+            losses += loss.item()
 
             if iteration % 10 == 0:
                 tloss = losses / (batch_idx + 1)
@@ -170,7 +174,7 @@ def train():
                 print('epoch:' + repr(epoch) + ' || iter:' +
                       repr(iteration) + ' || Loss:%.4f' % (tloss))
                 print('->> conf loss:{:.4f} || loc loss:{:.4f}'.format(
-                    loss_c.data[0], loss_l.data[0]))
+                    loss_c.item(), loss_l.item()))
                 print('->>lr:{:.6f}'.format(optimizer.param_groups[0]['lr']))
 
             if iteration != 0 and iteration % 5000 == 0:
@@ -201,10 +205,10 @@ def val(epoch):
             targets = [Variable(ann, volatile=True) for ann in targets]
 
         out = net(images)
-        loss_l, loss_c = criterion(out, targets)
+        loss_l, loss_c = criterion(out, priors, targets)
         loss = loss_l + loss_c
-        loc_loss += loss_l.data[0]
-        conf_loss += loss_c.data[0]
+        loc_loss += loss_l.item()
+        conf_loss += loss_c.item()
         step += 1
 
     tloss = (loc_loss + conf_loss) / step
