@@ -19,7 +19,7 @@ Meanwhile train hand and head with S3FD,hand dataset is [Egohands Dataset](http:
 ### Train
 We can choose different dataset to train different target[face,head,hand] 
 ``` 
-python train.py --batch_size 4 --dataset face\hand\head
+python main.py --batch_size 4 --dataset face\hand\head
 ``` 
 
 ### Evalution
