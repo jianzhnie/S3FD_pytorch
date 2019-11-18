@@ -49,7 +49,7 @@ python demo.py
 ### Result
 1. AFW PASCAL FDDB
 <div align="center">
-<img src="https://github.com/jiazhnie/S3FD_pytorch/blob/master/img/AFW.png" height="200px" alt="afw" >
+<img src="https://github.com/jianzhnie/S3FD_pytorch/blob/master/img/AFW.png" height="200px" alt="afw" >
 <img src="https://github.com/jianzhnie/S3FD_pytorch/blob/master/img/pascal.png" height="200px" alt="pascal" >
 <img src="https://github.com/jianzhnie/S3FD_pytorch/blob/master/img/FDDB.png" height="200px" alt="fddb" >     
 </div>
@@ -64,7 +64,7 @@ python demo.py
 
 2. demo
 <div align="center">
-<img src="https://github.com/jiazhnie/S3FD_pytorch/blob/master/img/test2.jpg" height="400px" alt="afw" >
+<img src="https://github.com/jianzhnie/S3FD_pytorch/blob/master/img/test2.jpg" height="400px" alt="afw" >
 </div>
 
 
