@@ -64,7 +64,7 @@ python demo.py
 
 2. demo
 <div align="center">
-<img src="https://github.com/jiahznie/S3FD_pytorch/blob/master/tmp/test2.jpg" height="400px" alt="afw" >
+<img src="https://github.com/jiazhnie/S3FD_pytorch/blob/master/tmp/test2.jpg" height="400px" alt="afw" >
 </div>
 
 
