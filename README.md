@@ -5,7 +5,7 @@ A PyTorch Implementation of Single Shot Scale-invariant Face Detector
 Meanwhile train hand and head with S3FD,hand dataset is [Egohands Dataset](http://vision.soic.indiana.edu/projects/egohands/),head dataset is [SCUT-HEAD](https://github.com/HCIILAB/SCUT-HEAD-Dataset-Release),we can download [hand model](https://pan.baidu.com/s/1_d4HqioBJknGj2ypwtYaXg) and [face model](https://pan.baidu.com/s/1epyTAUc6qSt3oZ7veK4oEw)
 
 ### Requirement
-* pytorch 0.3 
+* pytorch 1.3.0
 * opencv 
 * numpy 
 * easydict
@@ -14,7 +14,6 @@ Meanwhile train hand and head with S3FD,hand dataset is [Egohands Dataset](http:
 1. download WIDER face dataset、Egohands dataset and SCUT-HEAD
 2. modify data/config.py 
 3. ``` python prepare_wider_data.py ```
-4 ``` python prepare_handataset.py ```
 
 
 ### Train
@@ -50,9 +49,9 @@ python demo.py
 ### Result
 1. AFW PASCAL FDDB
 <div align="center">
-<img src="https://github.com/yxlijun/S3FD.pytorch/blob/master/img/AFW.png" height="200px" alt="afw" >
-<img src="https://github.com/yxlijun/S3FD.pytorch/blob/master/img/pascal.png" height="200px" alt="pascal" >
-<img src="https://github.com/yxlijun/S3FD.pytorch/blob/master/img/FDDB.png" height="200px" alt="fddb" >     
+<img src="https://github.com/jiazhnie/S3FD_pytorch/blob/master/img/AFW.png" height="200px" alt="afw" >
+<img src="https://github.com/jianzhnie/S3FD_pytorch/blob/master/img/pascal.png" height="200px" alt="pascal" >
+<img src="https://github.com/jianzhnie/S3FD_pytorch/blob/master/img/FDDB.png" height="200px" alt="fddb" >     
 </div>
 
 	AFW AP=99.81 paper=99.85 
@@ -65,7 +64,7 @@ python demo.py
 
 2. demo
 <div align="center">
-<img src="https://github.com/yxlijun/S3FD.pytorch/blob/master/tmp/test2.jpg" height="400px" alt="afw" >
+<img src="https://github.com/jiahznie/S3FD_pytorch/blob/master/tmp/test2.jpg" height="400px" alt="afw" >
 </div>
 
 
